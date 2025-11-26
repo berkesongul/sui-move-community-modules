@@ -17,18 +17,20 @@ module module_2::hero {
     #[allow(lint(self_transfer))]
     public entry fun create_hero(name: String, image_url: String, power: u64,  ctx: &mut TxContext) {
         // TODO: Create the Hero object
-        // TODO: Transfer the Hero object to the sender
-
         let hero = Hero {
             id: object::new(ctx),
             name,
             image_url,
             power,
         };
+        // TODO: Transfer the Hero object to the sender
+        transfer::public_transfer(hero, ctx.sender());
+
     }
 
     public entry fun transfer_hero(hero: Hero, to: address) {
         // TODO: Transfer the Hero object to the recipient
+        transfer::public_transfer(hero, to);
     }
     
     // ========= GETTER FUNCTIONS =========
