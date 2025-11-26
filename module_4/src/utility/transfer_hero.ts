@@ -4,6 +4,14 @@ export const transferHero = (packageId: string, heroId: string, to: string) => {
   const tx = new Transaction();
   
   // TODO: Add moveCall to transfer a hero
+  tx.moveCall({
+  "target": `${packageId}::hero::transfer_hero`,
+  "arguments": [
+    tx.object(heroId),
+    tx.pure.address(to),
+    
+  ]    
+  })
   // Function: `${packageId}::hero::transfer_hero`  
   // Arguments: heroId (object), to (address)
   // Hints:
